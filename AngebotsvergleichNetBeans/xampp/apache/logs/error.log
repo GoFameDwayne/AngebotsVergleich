@@ -1,0 +1,45 @@
+[Tue Feb 16 08:30:45 2016] [notice] Digest: generating secret for digest authentication ...
+[Tue Feb 16 08:30:45 2016] [notice] Digest: done
+[Tue Feb 16 08:30:47 2016] [notice] Apache/2.2.21 (Win32) mod_ssl/2.2.21 OpenSSL/1.0.0e PHP/5.3.8 configured -- resuming normal operations
+[Tue Feb 16 08:30:47 2016] [notice] Server built: Sep 10 2011 11:34:11
+[Tue Feb 16 08:30:47 2016] [notice] Parent: Created child process 3192
+[Tue Feb 16 08:30:49 2016] [notice] Digest: generating secret for digest authentication ...
+[Tue Feb 16 08:30:49 2016] [notice] Digest: done
+[Tue Feb 16 08:30:50 2016] [notice] Child 3192: Child process is running
+[Tue Feb 16 08:30:50 2016] [notice] Child 3192: Acquired the start mutex.
+[Tue Feb 16 08:30:50 2016] [notice] Child 3192: Starting 150 worker threads.
+[Tue Feb 16 08:30:50 2016] [notice] Child 3192: Starting thread to listen on port 443.
+[Tue Feb 16 08:30:50 2016] [notice] Child 3192: Starting thread to listen on port 443.
+[Tue Feb 16 08:30:50 2016] [notice] Child 3192: Starting thread to listen on port 80.
+[Tue Feb 16 08:30:50 2016] [notice] Child 3192: Starting thread to listen on port 80.
+[Tue Feb 16 08:33:59 2016] [error] [client 10.0.0.250] client denied by server configuration: K:/xampp/phpMyAdmin/
+[Tue May 24 07:58:52 2016] [warn] pid file K:/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue May 24 07:58:52 2016] [notice] Digest: generating secret for digest authentication ...
+[Tue May 24 07:58:52 2016] [notice] Digest: done
+[Tue May 24 07:58:54 2016] [notice] Apache/2.2.21 (Win32) mod_ssl/2.2.21 OpenSSL/1.0.0e PHP/5.3.8 configured -- resuming normal operations
+[Tue May 24 07:58:54 2016] [notice] Server built: Sep 10 2011 11:34:11
+[Tue May 24 07:58:54 2016] [notice] Parent: Created child process 3320
+[Tue May 24 07:58:55 2016] [notice] Digest: generating secret for digest authentication ...
+[Tue May 24 07:58:55 2016] [notice] Digest: done
+[Tue May 24 07:58:56 2016] [notice] Child 3320: Child process is running
+[Tue May 24 07:58:56 2016] [notice] Child 3320: Acquired the start mutex.
+[Tue May 24 07:58:56 2016] [notice] Child 3320: Starting 150 worker threads.
+[Tue May 24 07:58:56 2016] [notice] Child 3320: Starting thread to listen on port 443.
+[Tue May 24 07:58:56 2016] [notice] Child 3320: Starting thread to listen on port 80.
+[Tue May 24 07:58:56 2016] [notice] Child 3320: Starting thread to listen on port 443.
+[Tue May 24 07:58:56 2016] [notice] Child 3320: Starting thread to listen on port 80.
+[Tue May 24 08:08:17 2016] [warn] pid file K:/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue May 24 08:08:17 2016] [notice] Digest: generating secret for digest authentication ...
+[Tue May 24 08:08:17 2016] [notice] Digest: done
+[Tue May 24 08:08:19 2016] [notice] Apache/2.2.21 (Win32) mod_ssl/2.2.21 OpenSSL/1.0.0e PHP/5.3.8 configured -- resuming normal operations
+[Tue May 24 08:08:19 2016] [notice] Server built: Sep 10 2011 11:34:11
+[Tue May 24 08:08:19 2016] [notice] Parent: Created child process 1224
+[Tue May 24 08:08:20 2016] [notice] Digest: generating secret for digest authentication ...
+[Tue May 24 08:08:20 2016] [notice] Digest: done
+[Tue May 24 08:08:21 2016] [notice] Child 1224: Child process is running
+[Tue May 24 08:08:21 2016] [notice] Child 1224: Acquired the start mutex.
+[Tue May 24 08:08:21 2016] [notice] Child 1224: Starting 150 worker threads.
+[Tue May 24 08:08:21 2016] [notice] Child 1224: Starting thread to listen on port 443.
+[Tue May 24 08:08:21 2016] [notice] Child 1224: Starting thread to listen on port 80.
+[Tue May 24 08:08:21 2016] [notice] Child 1224: Starting thread to listen on port 443.
+[Tue May 24 08:08:21 2016] [notice] Child 1224: Starting thread to listen on port 80.

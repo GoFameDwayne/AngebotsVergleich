@@ -1,0 +1,1 @@
+[16-Feb-2016 08:30:50] PHP Warning:  file_get_contents(lang.tmp) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in K:\xampp\htdocs\xampp\index.php on line 2

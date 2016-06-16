@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_angebotsvergleichnetbeans" default="compile.module.angebotsvergleichnetbeans">
+  <dirname property="module.angebotsvergleichnetbeans.basedir" file="${ant.file.module_angebotsvergleichnetbeans}"/>
+  
+  <property name="module.jdk.home.angebotsvergleichnetbeans" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.angebotsvergleichnetbeans" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.angebotsvergleichnetbeans" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.angebotsvergleichnetbeans" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="angebotsvergleichnetbeans.output.dir" value="undefined"/>
+  <property name="angebotsvergleichnetbeans.testoutput.dir" value="undefined"/>
+  
+  <path id="angebotsvergleichnetbeans.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="angebotsvergleichnetbeans.module.production.classpath">
+    <path refid="${module.jdk.classpath.angebotsvergleichnetbeans}"/>
+  </path>
+  
+  <path id="angebotsvergleichnetbeans.runtime.production.module.classpath"/>
+  
+  <path id="angebotsvergleichnetbeans.module.classpath">
+    <path refid="${module.jdk.classpath.angebotsvergleichnetbeans}"/>
+  </path>
+  
+  <path id="angebotsvergleichnetbeans.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.angebotsvergleichnetbeans">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.angebotsvergleichnetbeans">
+    <patternset refid="excluded.from.module.angebotsvergleichnetbeans"/>
+  </patternset>
+  
+  
+  <target name="compile.module.angebotsvergleichnetbeans" depends="compile.module.angebotsvergleichnetbeans.production,compile.module.angebotsvergleichnetbeans.tests" description="Compile module AngebotsvergleichNetBeans"/>
+  
+  <target name="compile.module.angebotsvergleichnetbeans.production" depends="register.custom.compilers" description="Compile module AngebotsvergleichNetBeans; production classes"/>
+  
+  <target name="compile.module.angebotsvergleichnetbeans.tests" depends="register.custom.compilers,compile.module.angebotsvergleichnetbeans.production" description="compile module AngebotsvergleichNetBeans; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.angebotsvergleichnetbeans" description="cleanup module">
+    <delete dir="${angebotsvergleichnetbeans.output.dir}"/>
+    <delete dir="${angebotsvergleichnetbeans.testoutput.dir}"/>
+  </target>
+</project>
