@@ -1,33 +1,50 @@
 package Controller;
 
-import Models.Company;
+import hibernate.InitSessionFactory;
+import Models.*;
 import Repository.CompanyRepository;
 import Repository.IRepository;
 import hibernate.DbSessionFactory;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 public class ProductCompareController {
-    private DbSessionFactory SessionFactory;
+    private Session Session;
     //private List<IRepository> Repositories;
     
+    public ProductCompareController(){
+        Session = InitSessionFactory.getInstance().getCurrentSession();
+    }
+    
     public List<Company> GetCompany(){
-        SessionFactory = new DbSessionFactory();
-        CompanyRepository CompanyRepository1;
-        //Class<CompanyRepository> CompanyRepositoryType = CompanyRepository.class;
-        CompanyRepository1 = new CompanyRepository();
-        CompanyRepository1.setSession(SessionFactory.getCurrentSession());
-        //CompanyRepository1 = getRepository(CompanyRepositoryType);
+        Class<CompanyRepository> CompanyRepositoryType = CompanyRepository.class;
+        Transaction Transaction = Session.beginTransaction();
         
-        return CompanyRepository1.getAll();
+        Company comp = new Company();
+        Place place = new Place();
+        place.setCity("City");
+        place.setID(UUID.randomUUID());
+        place.setStreet("street");
+        place.setZipCode("35485");
+        
+        comp.ID = UUID.randomUUID();
+        comp.setName("companyname");
+        comp.setPlace(place);
+        
+        getRepository(CompanyRepositoryType).save(comp);
+        Transaction.commit();
+        return getRepository(CompanyRepositoryType).getAll();
     }
     
     private <T extends IRepository> T getRepository(Class<T> classType){
         T Repository = null;
         try {
             Repository = classType.newInstance();
-            Repository.setSession(SessionFactory.getCurrentSession());
+            Repository.setSession(Session);
         } catch (Exception ex) {
             Logger.getLogger(ProductCompareController.class.getName()).log(Level.SEVERE, null, ex);
         }
