@@ -1,6 +1,9 @@
 
+import Controller.ProductCompareController;
+import Models.Company;
 import Models.Product;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -219,6 +222,11 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
 
     private void btnCompareProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompareProductActionPerformed
         int[] Selection = tblProductCompare.getSelectedRows();
+        ProductCompareController ProductCompareController = new ProductCompareController();
+        
+        
+        List<Company> Companies = ProductCompareController.GetCompany();
+        
         
         UUID SelectedId1;
         UUID SelectedId2;

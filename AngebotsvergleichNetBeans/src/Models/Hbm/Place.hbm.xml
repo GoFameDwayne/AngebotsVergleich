@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="Models.hbm">
+    <class name="Models.Place" table="Place">
+        <id name="ID" type="uuid-char"/>
+        <property name="street" type="string" column="street"/>
+        <property name="ZipCode" type="string" column="ZipCode"/>
+        <property name="City" type="string" column="City"/>
+    </class>
+</hibernate-mapping>

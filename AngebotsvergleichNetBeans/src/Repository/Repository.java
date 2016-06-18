@@ -31,4 +31,11 @@ public class Repository<T extends IEntity> implements IRepository<T>{
                 add(Restrictions.eq("id", id)).
                 list().get(1);
     }
+
+    @Override
+    public void save(IEntity entity) {
+        session.saveOrUpdate(entity);
+    }
+    
+    
 }

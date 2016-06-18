@@ -4,7 +4,7 @@ package Models;
 import java.util.UUID;
 
 public class Company implements IEntity{
-    private UUID ID;
+    public UUID ID;
     private String Name;
     private Place Place;
 

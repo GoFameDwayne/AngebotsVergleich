@@ -2,9 +2,10 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping package="Models.hbm">
-    <class name="Company" table="company">
-        <id name="id"/>
+    <class name="Models.Company" table="company">
+        <id name="ID" type="uuid-char"/>     
         <property name="name" type="string" column="name"/>
+        <many-to-one name="place" column="place_id" 
+        class="Models.Place" not-null="true" cascade="save-update"/>
     </class>
-
 </hibernate-mapping>
