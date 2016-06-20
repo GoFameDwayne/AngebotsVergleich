@@ -1,7 +1,6 @@
 
 import Controller.ProductCompareController;
-import Models.Company;
-import Models.Product;
+import Models.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -222,12 +221,7 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
 
     private void btnCompareProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompareProductActionPerformed
         int[] Selection = tblProductCompare.getSelectedRows();
-        ProductCompareController ProductCompareController = new ProductCompareController();
-        
-        
-        List<Company> Companies = ProductCompareController.GetCompany();
-        
-        
+        Fake();
         UUID SelectedId1;
         UUID SelectedId2;
         if(Selection.length == 2){
@@ -237,9 +231,33 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnCompareProductActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void Fake(){
+        ProductCompareController ProductCompareController = new ProductCompareController();
+        Company comp = new Company();
+        Place place = new Place();
+        Market Market = new Market();
+        
+        Market.setID(UUID.randomUUID());
+        Market.setName("Lidel");
+        Market.setPlace(place);
+        
+        place.setCity("City");
+        place.setID(UUID.randomUUID());
+        place.setStreet("street");
+        place.setZipCode("35485");
+        
+        comp.ID = UUID.randomUUID();
+        comp.setName("companyname");
+        comp.setPlace(place);
+        
+        ProductCompareController.SaveCompany(comp);
+
+        
+        
+        
+        List<Company> Companies = ProductCompareController.GetCompanies();
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

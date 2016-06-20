@@ -1,12 +1,14 @@
 package Models;
 
 
+import java.util.List;
 import java.util.UUID;
 
 public class Market implements IEntity{
     private UUID ID;
     private String Name;
     private Place Place;
+    private List<Product> Products;
 
     @Override
     public UUID getID() {
@@ -18,6 +20,14 @@ public class Market implements IEntity{
         this.ID = ID;
     }
 
+    public List<Product> getProducts() {
+        return Products;
+    }
+
+    public void setProducts(List<Product> Products) {
+        this.Products = Products;
+    }
+    
     public String getName() {
         return Name;
     }

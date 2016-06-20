@@ -9,7 +9,14 @@ public class Product implements IEntity {
     private Market Market;
     private String ProductNumber;
     private double Amount;
+    private ProductType ProductType;
+    private AmountType AmountType;
     private Company Company;
+    
+    public enum AmountType{
+        euro,
+        dollar
+    }
     
     public Product(){
         
@@ -27,6 +34,22 @@ public class Product implements IEntity {
     @Override
     public void setID(UUID ID) {
         this.ID = ID;
+    }
+
+    public AmountType getAmountType() {
+        return AmountType;
+    }
+
+    public void setAmountType(AmountType AmountType) {
+        this.AmountType = AmountType;
+    }
+
+    public ProductType getProductType() {
+        return ProductType;
+    }
+
+    public void setProductType(ProductType ProductType) {
+        this.ProductType = ProductType;
     }
 
     public String getDescription() {
@@ -67,5 +90,7 @@ public class Product implements IEntity {
 
     public void setCompany(Company Company) {
         this.Company = Company;
-    }    
+    }   
+    
+    
 }

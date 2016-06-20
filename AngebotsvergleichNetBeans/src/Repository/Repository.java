@@ -17,6 +17,10 @@ public class Repository<T extends IEntity> implements IRepository<T>{
     public void setSession(Session session) {
         this.session = session;
     }
+
+    public Session getSession() {
+        return session;
+    }
     
     public Repository(Class<T> classType){
         this.classType = classType;

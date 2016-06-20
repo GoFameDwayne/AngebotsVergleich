@@ -1,12 +1,10 @@
 package Repository;
 
-import Models.Company;
+import Models.*;
 
-public class CompanyRepository extends Repository<Company>{
+public class ProductRepository extends Repository<Product>{
 
-    public CompanyRepository() {
-        super(Company.class);
+    public ProductRepository() {
+        super(Product.class);
     }
-    
-    
 }

@@ -42,4 +42,8 @@ public class Place implements IEntity {
     public void setCity(String City) {
         this.City = City;
     }
+    public String toString(){
+        return Street + " " + ZipCode + " " + City;
+    }
+    
 }
