@@ -12,7 +12,10 @@
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.hbm2ddl.auto">validate</property>
     <property name="connection.pool_size">1</property>
-    <mapping class="Models.Place" file="" jar="" package="Models" resource="Models/Hbm/Place.hbm.xml"/>
+    <mapping class="Models.Place" package="Models" resource="Models/Hbm/Place.hbm.xml"/>
     <mapping class="Models.Company" package="Models" resource="Models/Hbm/Company.hbm.xml"/>
+    <mapping class="Models.ProductType" package="Models" resource="Models/Hbm/ProductType.hbm.xml"/>
+    <mapping class="Models.Product" package="Models" resource="Models/Hbm/Product.hbm.xml"/>
+    <mapping class="Models.Market" package="Models" resource="Models/Hbm/Market.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

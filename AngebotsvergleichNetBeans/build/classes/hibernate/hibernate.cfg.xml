@@ -12,7 +12,5 @@
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.hbm2ddl.auto">validate</property>
     <property name="connection.pool_size">1</property>
-    <mapping class="Models.Company" package="Models" resource="Models/Hbm/Company.hbm.xml"/>
-    <mapping class="Models.Place" package="Models" resource="Models/Hbm/Place.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
