@@ -2,53 +2,95 @@ package Controller;
 
 import hibernate.InitSessionFactory;
 import Models.*;
-import Repository.CompanyRepository;
-import Repository.IRepository;
-import hibernate.DbSessionFactory;
+import Repository.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class ProductCompareController {
-    private Session Session;
-    //private List<IRepository> Repositories;
     
     public ProductCompareController(){
-        Session = InitSessionFactory.getInstance().getCurrentSession();
     }
     
-    public List<Company> GetCompany(){
+    public List<Company> GetCompanies(){
+        CompanyRepository CompanyRepository;
         Class<CompanyRepository> CompanyRepositoryType = CompanyRepository.class;
+        CompanyRepository = RepositoryProvider.getRepository(CompanyRepositoryType);
+        
+        Session Session = CompanyRepository.getSession();
+        Session.beginTransaction();        
+        return CompanyRepository.getAll();
+    }
+        
+    public void SaveCompany(Company Company){
+        Class<CompanyRepository> CompanyRepositoryType = CompanyRepository.class;
+        Session Session = InitSessionFactory.getInstance().getCurrentSession();
+        
         Transaction Transaction = Session.beginTransaction();
-        
-        Company comp = new Company();
-        Place place = new Place();
-        place.setCity("City");
-        place.setID(UUID.randomUUID());
-        place.setStreet("street");
-        place.setZipCode("35485");
-        
-        comp.ID = UUID.randomUUID();
-        comp.setName("companyname");
-        comp.setPlace(place);
-        
-        getRepository(CompanyRepositoryType).save(comp);
+        RepositoryProvider.getRepository(CompanyRepositoryType).save(Company);
         Transaction.commit();
-        return getRepository(CompanyRepositoryType).getAll();
     }
     
-    private <T extends IRepository> T getRepository(Class<T> classType){
-        T Repository = null;
-        try {
-            Repository = classType.newInstance();
-            Repository.setSession(Session);
-        } catch (Exception ex) {
-            Logger.getLogger(ProductCompareController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return Repository;
+    public List<Market> GetMarkets(){
+        MarketRepository MarketRepository;
+        Class<MarketRepository> MarketRepositoryType = MarketRepository.class;
+        MarketRepository = RepositoryProvider.getRepository(MarketRepositoryType);
+        
+        Session Session = MarketRepository.getSession();
+        Session.beginTransaction();        
+        return MarketRepository.getAll();
+    }
+    
+    public void SaveMarket(Market Market){
+        Class<MarketRepository> MarketRepositoryType = MarketRepository.class;
+        Session Session = InitSessionFactory.getInstance().getCurrentSession();
+        
+        Transaction Transaction = Session.beginTransaction();
+        RepositoryProvider.getRepository(MarketRepositoryType).save(Market);
+        Transaction.commit();
+    }
+    
+    public List<Product> GetProducts(){
+        ProductRepository ProductRepository;
+        Class<ProductRepository> ProductRepositoryType = ProductRepository.class;
+        ProductRepository = RepositoryProvider.getRepository(ProductRepositoryType);
+        
+        Session Session = ProductRepository.getSession();
+        Session.beginTransaction();        
+        return ProductRepository.getAll();
+    }    
+
+    public void SaveProduct(Product Product){
+        Class<ProductRepository> ProductRepositoryType = ProductRepository.class;
+        Session Session = InitSessionFactory.getInstance().getCurrentSession();
+        
+        Transaction Transaction = Session.beginTransaction();
+        RepositoryProvider.getRepository(ProductRepositoryType).save(Product);
+        Transaction.commit();
+    }
+    
+    public List<Place> GetPlaces(){
+        List<Place> Places;
+        PlaceRepository PlaceRepository;
+        Class<PlaceRepository> PlaceRepositoryType = PlaceRepository.class;
+        PlaceRepository = RepositoryProvider.getRepository(PlaceRepositoryType);
+        Transaction Transaction;
+        
+        Session Session = PlaceRepository.getSession();
+        Transaction = Session.beginTransaction();  
+        Places = PlaceRepository.getAll();
+        Transaction.commit();
+        return Places;
+    }    
+
+    public void SavePlace(Place Place){
+        Class<PlaceRepository> PlaceRepositoryType = PlaceRepository.class;
+        Session Session = InitSessionFactory.getInstance().getCurrentSession();
+        
+        Transaction Transaction = Session.beginTransaction();
+        RepositoryProvider.getRepository(PlaceRepositoryType).save(Place);
+        Transaction.commit();
     }
     
 }

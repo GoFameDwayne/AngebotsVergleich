@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="Models.hbm">
+    <class name="Models.Market" table="Market">
+        <id name="ID" type="uuid-char"/>
+        <property name="Name" type="string" column="Name"/>
+        <many-to-one name="place" column="place_id" 
+        class="Models.Place" not-null="true" cascade="save-update"/>
+    </class>
+</hibernate-mapping>

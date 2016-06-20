@@ -5,7 +5,8 @@ import java.util.UUID;
 
 public class ProductType implements IEntity{
     private UUID ID;
-
+    private String Name;
+    
     @Override
     public UUID getID() {
         return ID;
@@ -23,5 +24,4 @@ public class ProductType implements IEntity{
     public void setName(String Name) {
         this.Name = Name;
     }
-    private String Name;
 }
