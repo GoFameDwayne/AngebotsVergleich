@@ -52,9 +52,9 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtPrAmount = new javax.swing.JTextField();
-        cbPrCompany = new javax.swing.JComboBox<>();
+        cbPrCompany = new javax.swing.JComboBox<String>();
         jLabel8 = new javax.swing.JLabel();
-        cbPrMarket = new javax.swing.JComboBox<>();
+        cbPrMarket = new javax.swing.JComboBox<String>();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -68,14 +68,14 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
         btAddCompany = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtCName = new javax.swing.JTextField();
-        cbCPlace = new javax.swing.JComboBox<>();
+        cbCPlace = new javax.swing.JComboBox<String>();
         jLabel11 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         btAddMarket = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         txtMName = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        cbMPlace = new javax.swing.JComboBox<>();
+        cbMPlace = new javax.swing.JComboBox<String>();
         jPanel8 = new javax.swing.JPanel();
         btAddPlace = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
@@ -185,11 +185,11 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
 
         jLabel5.setText("Menge");
 
-        cbPrCompany.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPrCompany.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel8.setText("Hersteller");
 
-        cbPrMarket.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPrMarket.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel7.setText("Markt");
 
@@ -326,7 +326,7 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
             }
         });
 
-        cbCPlace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCPlace.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel11.setText("Ort");
 
@@ -353,12 +353,13 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbCPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11)))
+                        .addComponent(jLabel11))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
                 .addComponent(btAddCompany)
                 .addContainerGap())
@@ -383,7 +384,7 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
 
         jLabel13.setText("Ort");
 
-        cbMPlace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbMPlace.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -467,20 +468,20 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
                         .addGap(0, 402, Short.MAX_VALUE)
                         .addComponent(btAddPlace))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addGap(21, 21, 21)
-                                .addComponent(txtPlCity))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtPlStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addGap(33, 33, 33)
-                                .addComponent(txtPlPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel15))
+                                .addGap(21, 21, 21)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPlPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPlCity, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 253, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
