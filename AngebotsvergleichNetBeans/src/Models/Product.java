@@ -68,4 +68,23 @@ public class Product implements IEntity {
     public void setCompany(Company Company) {
         this.Company = Company;
     }    
+    
+    public String ToString()
+    {
+        System.out.println("11");
+        String ausgabe = "Direkt-Vergleich \n\n";
+        if(Description != null)
+        {
+            ausgabe += "Bezeichnung: " + Description + "\n";
+        }
+        if(ProductNumber != null)
+        {
+            ausgabe += "Priduktnummer:" + ProductNumber + " \n";
+        }
+        if(Market != null)
+        {
+            ausgabe += "Markt: " + Market.getName() + "\n";
+        }
+        return ausgabe;
+    }
 }
