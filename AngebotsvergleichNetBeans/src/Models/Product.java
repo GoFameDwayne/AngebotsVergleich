@@ -10,7 +10,15 @@ public class Product implements IEntity {
     private String ProductNumber;
     private double Amount;
     private ProductType ProductType;
-    private AmountType AmountType;
+    private int AmountTypeInt;
+
+    public int getAmountTypeInt() {
+        return AmountTypeInt;
+    }
+
+    public void setAmountTypeInt(int AmountTypeInt) {
+        this.AmountTypeInt = AmountTypeInt;
+    }
     private Company Company;
     
     public enum AmountType{
@@ -34,14 +42,6 @@ public class Product implements IEntity {
     @Override
     public void setID(UUID ID) {
         this.ID = ID;
-    }
-
-    public AmountType getAmountType() {
-        return AmountType;
-    }
-
-    public void setAmountType(AmountType AmountType) {
-        this.AmountType = AmountType;
     }
 
     public ProductType getProductType() {
@@ -92,5 +92,8 @@ public class Product implements IEntity {
         this.Company = Company;
     }   
     
+    public String toString(){
+        return getProductNumber();
+    }
     
 }

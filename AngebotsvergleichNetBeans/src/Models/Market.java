@@ -44,4 +44,8 @@ public class Market implements IEntity{
         this.Place = Place;
     }
 
+    @Override
+    public String toString(){
+        return getName();
+    }
 }

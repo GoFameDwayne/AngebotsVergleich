@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/F:/Programming/GitHub/AngebotsvergleichNetBeans/src/Repository/ProductRepository.java</file>
+            <file>file:/F:/Programming/GitHub/AngebotsvergleichNetBeans/src/Models/Hbm/Product.hbm.xml</file>
             <file>file:/F:/Programming/GitHub/AngebotsvergleichNetBeans/src/Models/Product.java</file>
-            <file>file:/F:/Programming/GitHub/AngebotsvergleichNetBeans/src/Models/ProductType.java</file>
-            <file>file:/F:/Programming/GitHub/AngebotsvergleichNetBeans/src/Models/Company.java</file>
-            <file>file:/F:/Programming/GitHub/AngebotsvergleichNetBeans/src/Models/Market.java</file>
-            <file>file:/F:/Programming/GitHub/AngebotsvergleichNetBeans/src/Models/ProductComparer.java</file>
             <file>file:/F:/Programming/GitHub/AngebotsvergleichNetBeans/src/AngebotsvergleichGUI.java</file>
             <file>file:/F:/Programming/GitHub/AngebotsvergleichNetBeans/src/Controller/ProductCompareController.java</file>
-            <file>file:/F:/Programming/GitHub/AngebotsvergleichNetBeans/src/Models/Place.java</file>
-            <file>file:/F:/Programming/GitHub/AngebotsvergleichNetBeans/src/Repository/PlaceRepository.java</file>
+            <file>file:/F:/Programming/GitHub/AngebotsvergleichNetBeans/src/Repository/ProductTypeRepository.java</file>
         </group>
     </open-files>
 </project-private>

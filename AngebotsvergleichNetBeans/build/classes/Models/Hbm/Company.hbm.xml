@@ -6,6 +6,6 @@
         <id name="ID" type="uuid-char"/>     
         <property name="name" type="string" column="name"/>
         <many-to-one name="place" column="place_id" 
-        class="Models.Place" not-null="true" cascade="save-update"/>
+        class="Models.Place" not-null="true" cascade="save-update" fetch="select" lazy="false"/>
     </class>
 </hibernate-mapping>

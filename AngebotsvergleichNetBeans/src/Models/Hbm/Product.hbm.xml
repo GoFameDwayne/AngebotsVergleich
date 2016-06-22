@@ -7,11 +7,11 @@
         <property name="Description" type="string" column="Description"/>
         <property name="ProductNumber" type="string" column="Product_Number"/>
         <property name="Amount" type="double" column="Amount"/>
-        <property name="AmountType" type="int" column="Amount_Type"/>
+        <property name="AmountTypeInt" type="int" column="Amount_Type"/>
         <many-to-one name="productType" column="product_Type_id" 
-        class="Models.ProductType" not-null="true" cascade="save-update"/>
+        class="Models.ProductType" not-null="true" cascade="save-update" fetch="select" lazy="false"/>
         <many-to-one name="Company" column="Company_id" 
-        class="Models.Company" not-null="true" cascade="save-update"/>
-        <many-to-one name="Market" column="Market_id" not-null="true" class="Models.Market"/>
+        class="Models.Company" not-null="true" cascade="save-update" fetch="select" lazy="false"/>
+        <many-to-one name="Market" column="Market_id" not-null="true" class="Models.Market" fetch="select" lazy="false"/>
     </class>
 </hibernate-mapping>

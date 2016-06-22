@@ -24,4 +24,8 @@ public class ProductType implements IEntity{
     public void setName(String Name) {
         this.Name = Name;
     }
+    
+    public String toString(){
+        return getName();
+    }
 }

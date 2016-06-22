@@ -33,4 +33,9 @@ public class Company implements IEntity{
     public void setPlace(Place Place) {
         this.Place = Place;
     }
+    
+    public String toString(){
+        return getName();
+    }
+    
 }

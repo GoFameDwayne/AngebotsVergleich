@@ -33,7 +33,7 @@ public class Repository<T extends IEntity> implements IRepository<T>{
     public T getById(UUID id) {
         return (T) session.createCriteria(classType).
                 add(Restrictions.eq("id", id)).
-                list().get(1);
+                list().get(0);
     }
 
     @Override
