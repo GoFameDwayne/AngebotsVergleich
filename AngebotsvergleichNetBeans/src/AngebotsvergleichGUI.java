@@ -1,7 +1,12 @@
 
+import Models.Company;
+import Models.Market;
+import Models.Place;
 import Models.Product;
+import Models.ProductType;
 import java.util.ArrayList;
 import java.util.UUID;
+import javax.swing.ComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -22,6 +27,7 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
     public AngebotsvergleichGUI() {
         initComponents();
        tblProductCompare.getColumnModel().removeColumn(tblProductCompare.getColumn("ID"));
+       cbPrMarket.addItem(null);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,7 +38,6 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane5 = new javax.swing.JTabbedPane();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -47,36 +52,38 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel4 = new javax.swing.JPanel();
+        paneProduct = new javax.swing.JPanel();
         txtPrProductNumber = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtPrAmount = new javax.swing.JTextField();
-        cbPrCompany = new javax.swing.JComboBox<String>();
+        cbPrCompany = new javax.swing.JComboBox<Company>();
         jLabel8 = new javax.swing.JLabel();
-        cbPrMarket = new javax.swing.JComboBox<String>();
+        cbPrMarket = new javax.swing.JComboBox<Market>();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtPaneDescription = new javax.swing.JTextArea();
         btAddProduct = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        cbPrProductType = new javax.swing.JComboBox<ProductType>();
+        paneProductType = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txtPtName = new javax.swing.JTextField();
         btAddProductType = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
+        paneCompany = new javax.swing.JPanel();
         btAddCompany = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtCName = new javax.swing.JTextField();
-        cbCPlace = new javax.swing.JComboBox<String>();
+        cbCPlace = new javax.swing.JComboBox<Place>();
         jLabel11 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        paneMarket = new javax.swing.JPanel();
         btAddMarket = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         txtMName = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        cbMPlace = new javax.swing.JComboBox<String>();
-        jPanel8 = new javax.swing.JPanel();
+        cbMPlace = new javax.swing.JComboBox<Place>();
+        panePlace = new javax.swing.JPanel();
         btAddPlace = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         txtPlStreet = new javax.swing.JTextField();
@@ -175,9 +182,14 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Direkt-Vergleich", jPanel3);
 
-        txtPrProductNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrProductNumberActionPerformed(evt);
+        jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane2StateChanged(evt);
+            }
+        });
+        jTabbedPane2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTabbedPane2FocusGained(evt);
             }
         });
 
@@ -185,11 +197,19 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
 
         jLabel5.setText("Menge");
 
-        cbPrCompany.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPrCompany.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbPrCompanyItemStateChanged(evt);
+            }
+        });
 
         jLabel8.setText("Hersteller");
 
-        cbPrMarket.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPrMarket.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbPrMarketItemStateChanged(evt);
+            }
+        });
 
         jLabel7.setText("Markt");
 
@@ -206,56 +226,69 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        jLabel17.setText("Produkttyp");
+
+
+        javax.swing.GroupLayout paneProductLayout = new javax.swing.GroupLayout(paneProduct);
+        paneProduct.setLayout(paneProductLayout);
+        paneProductLayout.setHorizontalGroup(
+            paneProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneProductLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paneProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(paneProductLayout.createSequentialGroup()
+                        .addGroup(paneProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbPrMarket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPrProductNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPrAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbPrCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(84, 84, 84))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
+                        .addGroup(paneProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(paneProductLayout.createSequentialGroup()
+                                .addComponent(txtPrProductNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPrAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(84, 84, 84))
+                            .addGroup(paneProductLayout.createSequentialGroup()
+                                .addComponent(cbPrMarket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbPrCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel17)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbPrProductType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(paneProductLayout.createSequentialGroup()
+                        .addGroup(paneProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(paneProductLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2))
                         .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneProductLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btAddProduct)
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        paneProductLayout.setVerticalGroup(
+            paneProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneProductLayout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addGroup(paneProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrProductNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(txtPrAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(paneProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbPrMarket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
-                    .addComponent(cbPrCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbPrCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17)
+                    .addComponent(cbPrProductType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -265,15 +298,9 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
                 .addGap(13, 13, 13))
         );
 
-        jTabbedPane2.addTab("Produkt", jPanel4);
+        jTabbedPane2.addTab("Produkt", paneProduct);
 
         jLabel9.setText("Name");
-
-        txtPtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPtNameActionPerformed(evt);
-            }
-        });
 
         btAddProductType.setText("AddData");
         btAddProductType.addActionListener(new java.awt.event.ActionListener() {
@@ -282,26 +309,26 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout paneProductTypeLayout = new javax.swing.GroupLayout(paneProductType);
+        paneProductType.setLayout(paneProductTypeLayout);
+        paneProductTypeLayout.setHorizontalGroup(
+            paneProductTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneProductTypeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPtName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(357, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneProductTypeLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btAddProductType)
                 .addContainerGap())
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        paneProductTypeLayout.setVerticalGroup(
+            paneProductTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneProductTypeLayout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(paneProductTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
@@ -309,7 +336,7 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane2.addTab("Produkttyp", jPanel5);
+        jTabbedPane2.addTab("Produkttyp", paneProductType);
 
         btAddCompany.setText("AddData");
         btAddCompany.addActionListener(new java.awt.event.ActionListener() {
@@ -320,25 +347,18 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
 
         jLabel10.setText("Name");
 
-        txtCName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCNameActionPerformed(evt);
-            }
-        });
-
-        cbCPlace.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel11.setText("Ort");
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout paneCompanyLayout = new javax.swing.GroupLayout(paneCompany);
+        paneCompany.setLayout(paneCompanyLayout);
+        paneCompanyLayout.setHorizontalGroup(
+            paneCompanyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneCompanyLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btAddCompany)
                 .addContainerGap())
-            .addGroup(jPanel6Layout.createSequentialGroup()
+            .addGroup(paneCompanyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -349,15 +369,15 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
                 .addComponent(cbCPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(201, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+        paneCompanyLayout.setVerticalGroup(
+            paneCompanyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneCompanyLayout.createSequentialGroup()
                 .addGap(82, 82, 82)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(paneCompanyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(paneCompanyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbCPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11))
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(paneCompanyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtCName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
@@ -365,7 +385,7 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane2.addTab("Unternehmen", jPanel6);
+        jTabbedPane2.addTab("Unternehmen", paneCompany);
 
         btAddMarket.setText("AddData");
         btAddMarket.addActionListener(new java.awt.event.ActionListener() {
@@ -376,25 +396,18 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
 
         jLabel12.setText("Name");
 
-        txtMName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMNameActionPerformed(evt);
-            }
-        });
-
         jLabel13.setText("Ort");
 
-        cbMPlace.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout paneMarketLayout = new javax.swing.GroupLayout(paneMarket);
+        paneMarket.setLayout(paneMarketLayout);
+        paneMarketLayout.setHorizontalGroup(
+            paneMarketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneMarketLayout.createSequentialGroup()
                 .addContainerGap(414, Short.MAX_VALUE)
                 .addComponent(btAddMarket)
                 .addContainerGap())
-            .addGroup(jPanel7Layout.createSequentialGroup()
+            .addGroup(paneMarketLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -405,11 +418,11 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
                 .addComponent(cbMPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+        paneMarketLayout.setVerticalGroup(
+            paneMarketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneMarketLayout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(paneMarketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(cbMPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -419,12 +432,12 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane2.addTab("Markt", jPanel7);
+        jTabbedPane2.addTab("Markt", paneMarket);
 
-        jPanel8.setToolTipText("");
-        jPanel8.setMaximumSize(new java.awt.Dimension(521, 204));
-        jPanel8.setMinimumSize(new java.awt.Dimension(521, 204));
-        jPanel8.setPreferredSize(new java.awt.Dimension(521, 204));
+        panePlace.setToolTipText("");
+        panePlace.setMaximumSize(new java.awt.Dimension(521, 204));
+        panePlace.setMinimumSize(new java.awt.Dimension(521, 204));
+        panePlace.setPreferredSize(new java.awt.Dimension(521, 204));
 
         btAddPlace.setText("AddData");
         btAddPlace.addActionListener(new java.awt.event.ActionListener() {
@@ -435,68 +448,50 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
 
         jLabel14.setText("Straße");
 
-        txtPlStreet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPlStreetActionPerformed(evt);
-            }
-        });
-
         jLabel15.setText("PLZ");
-
-        txtPlPLZ.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPlPLZActionPerformed(evt);
-            }
-        });
 
         jLabel16.setText("Stadt");
 
-        txtPlCity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPlCityActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout panePlaceLayout = new javax.swing.GroupLayout(panePlace);
+        panePlace.setLayout(panePlaceLayout);
+        panePlaceLayout.setHorizontalGroup(
+            panePlaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panePlaceLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGroup(panePlaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panePlaceLayout.createSequentialGroup()
                         .addGap(0, 402, Short.MAX_VALUE)
                         .addComponent(btAddPlace))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGroup(panePlaceLayout.createSequentialGroup()
+                        .addGroup(panePlaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panePlaceLayout.createSequentialGroup()
                                 .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(txtPlStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panePlaceLayout.createSequentialGroup()
+                                .addGroup(panePlaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel16)
                                     .addComponent(jLabel15))
                                 .addGap(21, 21, 21)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPlPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPlCity, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 253, Short.MAX_VALUE)))
+                                .addGroup(panePlaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtPlCity, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPlPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 249, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+        panePlaceLayout.setVerticalGroup(
+            panePlaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panePlaceLayout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panePlaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPlStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panePlaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPlPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panePlaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPlCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -504,7 +499,7 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane2.addTab("Ort", jPanel8);
+        jTabbedPane2.addTab("Ort", panePlace);
 
         jTabbedPane1.addTab("Daten hinzufügen", jTabbedPane2);
 
@@ -601,10 +596,6 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnCompareProductActionPerformed
 
-    private void txtPtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPtNameActionPerformed
-
     private void btAddProductTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btAddProductTypeActionPerformed
@@ -621,33 +612,28 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btAddPlaceActionPerformed
 
-    private void txtCNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCNameActionPerformed
-
     private void btAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btAddProductActionPerformed
 
-    private void txtPrProductNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrProductNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrProductNumberActionPerformed
+    private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
+        if (paneProduct.isShowing())
+        {
+            System.out.println("woop");
+        }
+    }//GEN-LAST:event_jTabbedPane2StateChanged
 
-    private void txtMNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMNameActionPerformed
+    private void cbPrMarketItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbPrMarketItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMNameActionPerformed
+    }//GEN-LAST:event_cbPrMarketItemStateChanged
 
-    private void txtPlStreetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlStreetActionPerformed
+    private void cbPrCompanyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbPrCompanyItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPlStreetActionPerformed
+    }//GEN-LAST:event_cbPrCompanyItemStateChanged
 
-    private void txtPlPLZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlPLZActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPlPLZActionPerformed
-
-    private void txtPlCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlCityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPlCityActionPerformed
+    private void jTabbedPane2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane2FocusGained
+        System.out.println("woop2");
+    }//GEN-LAST:event_jTabbedPane2FocusGained
 
     /**
      * @param args the command line arguments
@@ -691,10 +677,11 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
     private javax.swing.JButton btAddProductType;
     private javax.swing.JButton btnCompareProduct;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JComboBox<String> cbCPlace;
-    private javax.swing.JComboBox<String> cbMPlace;
-    private javax.swing.JComboBox<String> cbPrCompany;
-    private javax.swing.JComboBox<String> cbPrMarket;
+    private javax.swing.JComboBox<Place> cbCPlace;
+    private javax.swing.JComboBox<Place> cbMPlace;
+    private javax.swing.JComboBox<Company> cbPrCompany;
+    private javax.swing.JComboBox<Market> cbPrMarket;
+    private javax.swing.JComboBox<ProductType> cbPrProductType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -703,6 +690,7 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -714,20 +702,19 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JPanel paneCompany;
+    private javax.swing.JPanel paneMarket;
+    private javax.swing.JPanel panePlace;
+    private javax.swing.JPanel paneProduct;
+    private javax.swing.JPanel paneProductType;
     private javax.swing.JTable tblProductCompare;
     private javax.swing.JTextField txtCName;
     private javax.swing.JTextField txtMName;
