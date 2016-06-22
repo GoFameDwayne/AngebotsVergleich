@@ -1,9 +1,5 @@
 
-import Models.Company;
-import Models.Market;
-import Models.Place;
-import Models.Product;
-import Models.ProductType;
+import Models.*;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.ComboBoxModel;
@@ -26,8 +22,8 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
      */
     public AngebotsvergleichGUI() {
         initComponents();
-       tblProductCompare.getColumnModel().removeColumn(tblProductCompare.getColumn("ID"));
-       cbPrMarket.addItem(null);
+        tblProductCompare.getColumnModel().removeColumn(tblProductCompare.getColumn("ID"));
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -597,30 +593,46 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCompareProductActionPerformed
 
     private void btAddProductTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductTypeActionPerformed
-        // TODO add your handling code here:
+        ProductType pt = new ProductType();
+        pt.setName(txtPtName.getText());
+        db.Save(ProductType.class, pt);
     }//GEN-LAST:event_btAddProductTypeActionPerformed
 
     private void btAddCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCompanyActionPerformed
-        // TODO add your handling code here:
+        Company company = new Company();
+        company.setName(txtCName.getText());
+        company.setPlace((Place)cbCPlace.getSelectedItem());
+        db.Save(Company.class, company);
     }//GEN-LAST:event_btAddCompanyActionPerformed
 
     private void btAddMarketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddMarketActionPerformed
-        // TODO add your handling code here:
+        Market market = new Market();
+        market.setName(txtMName.getText());
+        market.setPlace((Place)cbMPlace.getSelectedItem());
+        db.Save(Market.class, market);
     }//GEN-LAST:event_btAddMarketActionPerformed
 
     private void btAddPlaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddPlaceActionPerformed
-        // TODO add your handling code here:
+        Place place = new Place();
+        place.setStreet(txtPlStreet.getText());
+        place.setCity(txtPlCity.getText());
+        place.setZipCode(txtPlPLZ.getText());
+        db.Save(Place.class, place);
     }//GEN-LAST:event_btAddPlaceActionPerformed
 
     private void btAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductActionPerformed
-        // TODO add your handling code here:
+        Product product = new Product();
+        product.setAmount(Double.parseDouble(txtPrAmount.getText()));
+        product.setCompany((Company)cbPrCompany.getSelectedItem());
+        product.setMarket((Market)cbPrMarket.getSelectedItem());
+        product.setProductNumber(txtPrProductNumber.getText());
+        product.setDescription(txtPaneDescription.getText());
+        db.Save(Product.class, product);
     }//GEN-LAST:event_btAddProductActionPerformed
 
     private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
-        if (paneProduct.isShowing())
-        {
-            System.out.println("woop");
-        }
+        if (paneProduct.isShowing()) {}
+        updateCBs();
     }//GEN-LAST:event_jTabbedPane2StateChanged
 
     private void cbPrMarketItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbPrMarketItemStateChanged
@@ -632,9 +644,24 @@ public class AngebotsvergleichGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cbPrCompanyItemStateChanged
 
     private void jTabbedPane2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane2FocusGained
-        System.out.println("woop2");
+        updateCBs();
     }//GEN-LAST:event_jTabbedPane2FocusGained
 
+    public void updateCBs()
+    {
+        for (Market market : Markets)
+            cbPrMarket.addItem(market);
+        for (Company company : Companies)
+            cbPrCompany.addItem(company);
+        for (ProductType producType : ProductTypes)
+            cbPrProductType.addItem(producType);
+        for (Place place : Places)
+        {
+            cbCPlace.addItem(place);
+            cbMPlace.addItem(place);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
